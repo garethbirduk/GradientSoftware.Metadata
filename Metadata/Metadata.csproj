@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>GradientSoftware.$(AssemblyName)</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Gareth Bird</Authors>
+    <Company>Gradient Software</Company>
+    <Description>A simple mechanism to edit jpg metadata.</Description>
+    <Copyright>© 2022 Gareth Bird</Copyright>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/garethbirduk/GradientSoftware.Metadata</RepositoryUrl>
+    <PackageTags>jpg; metdata; get; edit; replace; gradient; software</PackageTags>
+    <AssemblyVersion>0.0.1</AssemblyVersion>
+    <FileVersion>0.0.1</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExifLibNet" Version="2.1.4" />
+  </ItemGroup>
+
+</Project>
