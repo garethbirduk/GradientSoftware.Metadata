@@ -4,7 +4,7 @@ namespace Gradient.Metadata
 {
     public static class JpgEditor
     {
-        public static List<Tag> AllDateTimes =>            
+        public static List<Tag> AllDateTimes =>
             new()
             {
                 Tag.DateTime,
@@ -17,6 +17,12 @@ namespace Gradient.Metadata
         public static void IncrementDateTimeOriginal(string filepath, TimeSpan timeSpan, string newFilepath)
         {
             var dateTime = GetDateTimeOriginal(filepath).Add(timeSpan);
+            ReplaceDateTimeOriginal(filepath, newFilepath, dateTime);
+        }
+
+        public static void IncrementDateTimeOriginal(string filepath, int days, string newFilepath)
+        {
+            var dateTime = GetDateTimeOriginal(filepath).AddDays(days);
             ReplaceDateTimeOriginal(filepath, newFilepath, dateTime);
         }
 
