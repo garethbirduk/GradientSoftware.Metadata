@@ -70,7 +70,6 @@ namespace Gradient.Metadata.Test
         {
             var filepath = Path.Combine(DataDirectory, "ReplaceDateTime", filename);
             var dateTime = JpgEditor.GetDateTimeOriginal(filepath);
-            
 
             var newFilepath = Path.Combine($"_{Path.GetFileNameWithoutExtension(filename)}_Incremented_{Guid.NewGuid()}{Path.GetExtension(filepath)}");
             var timespan = new TimeSpan(hour, minute, second);
@@ -78,7 +77,28 @@ namespace Gradient.Metadata.Test
 
             Assert.IsFalse(dateTime == newDateTime);
 
-            JpgEditor.IncrementDateTimeOriginal(filepath, timespan, newFilepath);           
+            JpgEditor.IncrementDateTimeOriginal(filepath, timespan, newFilepath);
+            Assert.AreEqual(JpgEditor.GetDateTimeOriginal(newFilepath), newDateTime);
+        }
+
+        [DataTestMethod]
+        [DataRow("Capitol.jpg", 0)]
+        [DataRow("Capitol.jpg", 1)]
+        [DataRow("Capitol.jpg", 2)]
+        [DataRow("Capitol.jpg", -1)]
+        [DataRow("Capitol.jpg", -2)]
+        public void TestIncrementDateTime2(string filename, int days)
+        {
+            var filepath = Path.Combine(DataDirectory, "ReplaceDateTime", filename);
+            var dateTime = JpgEditor.GetDateTimeOriginal(filepath);
+
+            var newFilepath = Path.Combine($"_{Path.GetFileNameWithoutExtension(filename)}_Incremented_{Guid.NewGuid()}{Path.GetExtension(filepath)}");
+            var newDateTime = dateTime.AddDays(days);
+
+            if (days != 0)
+                Assert.IsFalse(dateTime == newDateTime);
+
+            JpgEditor.IncrementDateTimeOriginal(filepath, days, newFilepath);
             Assert.AreEqual(JpgEditor.GetDateTimeOriginal(newFilepath), newDateTime);
         }
     }
