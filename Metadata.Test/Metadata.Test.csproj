@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="TestData\**" CopyToOutputDirectory="PreserveNewest" LinkBase="config\" />
+    <None Include="TestData*\**" CopyToOutputDirectory="PreserveNewest" LinkBase="config\" />
   </ItemGroup>
 
   <ItemGroup>
