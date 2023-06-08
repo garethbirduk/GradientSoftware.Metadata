@@ -14,39 +14,45 @@ namespace Gradient.Metadata
                 Tag.GPSDateStamp,
             };
 
-        public static void IncrementDateTimeOriginal(string filepath, TimeSpan timeSpan, string newFilepath)
+        public static DateTime IncrementDateTimeOriginal(string filepath, TimeSpan timeSpan, string newFilepath)
         {
             var dateTime = GetDateTimeOriginal(filepath).Add(timeSpan);
             ReplaceDateTimeOriginal(filepath, newFilepath, dateTime);
+            return dateTime;
         }
 
-        public static void IncrementDateTimeOriginal(string filepath, int days, string newFilepath)
+        public static DateTime IncrementDateTimeOriginal(string filepath, int days, string newFilepath)
         {
             var dateTime = GetDateTimeOriginal(filepath).AddDays(days);
             ReplaceDateTimeOriginal(filepath, newFilepath, dateTime);
+            return dateTime;
         }
 
-        public static void ReplaceDateTimeOriginal(string filepath, string newFilepath, DateTime replacementDateTaken)
+        public static DateTime ReplaceDateTimeOriginal(string filepath, string newFilepath, DateTime replacementDateTaken)
         {
             var file = ImageFile.FromFile(filepath);
             ReplaceDateTimeOriginal(replacementDateTaken, file);
             file.Save(newFilepath);
+            return replacementDateTaken;
         }
 
-        private static void ReplaceDateTimeOriginal(DateTime replacementDateTaken, ImageFile file)
+        private static DateTime ReplaceDateTimeOriginal(DateTime replacementDateTaken, ImageFile file)
         {
             ReplaceDateTimes(replacementDateTaken, file, AllDateTimes.ToArray());
+            return replacementDateTaken;
         }
 
-        private static void ReplaceDateTimes(DateTime replacementDateTaken, ImageFile file, params Tag[] list)
+        private static DateTime ReplaceDateTimes(DateTime replacementDateTaken, ImageFile file, params Tag[] list)
         {
             foreach (var item in list)
                 file.Properties.Set((ExifTag)item, replacementDateTaken);
+            return replacementDateTaken;
         }
 
-        public static void ReplaceDateTimeOriginal(string filepath, DateTime replacementDateTaken)
+        public static DateTime ReplaceDateTimeOriginal(string filepath, DateTime replacementDateTaken)
         {
             ReplaceDateTimeOriginal(filepath, filepath, replacementDateTaken);
+            return replacementDateTaken;
         }
 
         public static SortedDictionary<string, string> GetAllMetadata(string filepath)

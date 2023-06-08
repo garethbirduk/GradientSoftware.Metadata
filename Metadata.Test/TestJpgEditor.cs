@@ -8,7 +8,7 @@ namespace Gradient.Metadata.Test
     [TestClass]
     public class TestJpgEditor
     {
-        public const string DataDirectory = "TestData";
+        public const string DataDirectory = "TestDataJpg";
 
         [DataTestMethod]
         [DataRow("Capitol.jpg")]
